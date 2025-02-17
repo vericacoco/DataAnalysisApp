@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  data-analysis:
+    image: data-analysis:latest
+    container_name: data-analysis
+    build: ./Data_Analysis
+    ports:
+      - "5000:5000"
+    depends_on:
+      - data-storage
+    networks:
+      - microservices-network
+
+
+  data-ingestion:
+    image: data-ingestion:latest
+    container_name: data-ingestion
+    build: ./Data_Ingestion
+    ports:
+      - "5001:5001"
+    depends_on:
+      - data-storage
+    networks:
+      - microservices-network
+
+
+  data-storage:
+    image: data-storage:latest
+    container_name: data-storage
+    build: ./Data_Storage
+    ports:
+      - "5432:5432"
+#    depends_on:
+#      - db
+#      - redis
+#    volumes:
+#      - db_data:/var/lib/postgresql/data
+#    environment:
+#      - POSTGRES_USER=user
+#      - POSTGRES_PASSWORD=password
+#      - POSTGRES_DB=yourdb
+    networks:
+      - microservices-network
+
+  data-visualization:
+    image: data-visualization:latest
+    container_name: data-visualization
+    build: ./Data_Visualization
+    ports:
+      - "5000:5000"
+    depends_on:
+      - data-storage
+    networks:
+      - microservices-network
+
+  realtime-processing:
+    image: realtime-processing:latest
+    container_name: realtime-processing
+    build: ./RealTime_Processing
+    ports:
+      - "5001:5001"
+    depends_on:
+      - data-storage
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
+
+volumes:
+  db_data:
