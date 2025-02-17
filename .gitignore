@@ -1,0 +1,33 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+env/
+venv/
+ENV/
+.venv/
+
+# IDEs and Editors
+# JetBrains IDEs
+.idea/
+
+# VS Code
+.vscode/
+
+# Python-related files
+*.log
+*.pot
+*.mo
+*.db
+*.sqlite3
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
