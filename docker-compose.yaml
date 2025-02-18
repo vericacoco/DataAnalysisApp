@@ -9,6 +9,8 @@ services:
       - "5000:5000"
     depends_on:
       - data-storage
+    volumes:
+      - app:/app
     networks:
       - microservices-network
 
@@ -21,6 +23,8 @@ services:
       - "5001:5001"
     depends_on:
       - data-storage
+    volumes:
+      - app:/app
     networks:
       - microservices-network
 
@@ -51,6 +55,8 @@ services:
       - "5000:5000"
     depends_on:
       - data-storage
+    volumes:
+      - app:/app
     networks:
       - microservices-network
 
@@ -62,6 +68,8 @@ services:
       - "5001:5001"
     depends_on:
       - data-storage
+    volumes:
+      - app:/app
     networks:
       - microservices-network
 
